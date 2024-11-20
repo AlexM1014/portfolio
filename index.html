@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="hedgegoat-admin">
+        <h1>How many Hedgegoats? <span id="hedgegoat-count">UKNOWN</span></h1>
+        <div>
+            <span>Scale mine with number of Hedgegoats:</span>
+            <button id="hedgegoat-add-one">1</button>
+            <button id="hedgegoat-add-ten">10</button>
+        </div>
+        <div>
+            <span>Move Mine:</span>
+            <button class="movement-button" id="movement-button-left">Left</button>
+            <button class="movement-button" id="movement-button-right">Right</button>
+            <button class="movement-button" id="movement-button-up">Up</button>
+            <button class="movement-button" id="movement-button-down">Down</button>
+            <button class="reset-button" id="reset-position">Reset</button>
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.170.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.170.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="./index.js"></script>
+    <script src="./clicker_game.js"></script>
+</body>
+</html>

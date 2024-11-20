@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+}
+
+#hedgegoat-admin {
+    position: fixed;
+    padding: 1rem;
+    background-color: #0000ffab;
+}
+
+.movement-button{
+    background-color: black;
+    color:white;
+}
+
+.reset-button{
+    background-color: red;
+    color:white;
+}
