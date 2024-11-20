@@ -43,9 +43,10 @@ new RGBELoader()
             await renderer.compileAsync( model, camera, scene );
 
             scene.add( model );
-            window.spikemine = model;
             console.log('spikemine loaded', model);
-
+            window.handle3DContentLoaded({
+                spikemine: model,
+            });
 
         } );
 

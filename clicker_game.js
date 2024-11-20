@@ -1,3 +1,4 @@
+var hedgegoatAdmin = document.getElementById('hedgegoat-admin');
 var hedgegoatCountDisplay = document.getElementById('hedgegoat-count');
 var hedgegoatAddOne = document.getElementById('hedgegoat-add-one');
 var hedgegoatAddTen = document.getElementById('hedgegoat-add-ten');
@@ -12,7 +13,7 @@ var resetButton = document.getElementById('reset-position');
 var hedgegoatCount = 1;
 
 var hedgegoatNameList = [
-    'Sonk', 
+    'Sonk',
     'Tils',
     'Nickles',
 ];
@@ -24,86 +25,66 @@ var hedgegoatObject = {
     '🐐ᓚᘏᗢ': 'Sure why not',
 };
 
-var updateHedgegoatCount = function () {
-    hedgegoatCountDisplay.innerText = hedgegoatCount;
-    console.log('what is spikemine?', window.spikemine);
-    //to-do
-    //we don't know when we have access to a spikemine
-    //admiral says there's a way to know when we do
-    //gonna check out out, yippie
+window.handle3DContentLoaded = function (loadedObjects) {
+    var { spikemine } = loadedObjects;
 
-    if(window.spikemine){
-        window.spikemine.scale.setScalar(hedgegoatCount/10);
-    }
-};
+    hedgegoatAdmin.removeAttribute('style');
 
-updateHedgegoatCount();
+    var updateHedgegoatCount = function () {
+        hedgegoatCountDisplay.innerText = hedgegoatCount;
+        console.log('what is spikemine?', spikemine);
+        spikemine.scale.setScalar((hedgegoatCount / 10) + 0.5);
+    };
 
-hedgegoatAddOne.addEventListener('click', function () {
-    hedgegoatCount += 1;
     updateHedgegoatCount();
-});
 
-hedgegoatAddTen.addEventListener('click', function () {
-    hedgegoatCount += 10;
-    updateHedgegoatCount();
-});
+    hedgegoatAddOne.addEventListener('click', function () {
+        hedgegoatCount += 1;
+        updateHedgegoatCount();
+    });
 
-//Movement
+    hedgegoatAddTen.addEventListener('click', function () {
+        hedgegoatCount += 10;
+        updateHedgegoatCount();
+    });
 
-var moveLeft = function () {
-    if(window.spikemine){
-        window.spikemine.position.x -= 1;
-        console.log(window.spikemine.position);
-    }
+    //Movement
+    var moveAmount = 0.1; 
+
+    var moveLeft = function () {
+        spikemine.position.x -= moveAmount;
+        console.log(spikemine.position);
+    };
+
+    var moveRight = function () {
+        spikemine.position.x += moveAmount;
+        console.log(spikemine.position);
+    };
+
+    var moveUp = function () {
+        spikemine.position.y += moveAmount;
+        console.log(spikemine.position);
+    };
+
+    var moveDown = function () {
+        spikemine.position.y -= moveAmount;
+        console.log(spikemine.position);
+    };
+
+    var resetPosition = function () {
+        spikemine.position.y = 0;
+        spikemine.position.x = 0;
+        console.log(spikemine.position);
+    };
+
+    movementButtonLeft.addEventListener('click', moveLeft);
+
+    movementButtonRight.addEventListener('click', moveRight);
+
+    movementButtonUp.addEventListener('click', moveUp);
+
+    movementButtonDown.addEventListener('click', moveDown);
+
+    resetButton.addEventListener('click', resetPosition);
 };
 
-var moveRight = function () {
-    if(window.spikemine){
-        window.spikemine.position.x += 1;
-        console.log(window.spikemine.position);
-    }
-};
-
-var moveUp = function () {
-    if(window.spikemine){
-        window.spikemine.position.y += 1;
-        console.log(window.spikemine.position);
-    }
-};
-
-var moveDown = function () {
-    if(window.spikemine){
-        window.spikemine.position.y -= 1;
-        console.log(window.spikemine.position);
-    }
-};
-
-var resetPosition = function () {
-    if(window.spikemine){
-        window.spikemine.position.y = 0;
-        window.spikemine.position.x = 0;
-        console.log(window.spikemine.position);
-    }
-};
-
-
-movementButtonLeft.addEventListener('click', function () {
-    moveLeft();
-});
-
-movementButtonRight.addEventListener('click', function () {
-    moveRight();
-});
-
-movementButtonUp.addEventListener('click', function () {
-    moveUp();
-});
-
-movementButtonDown.addEventListener('click', function () {
-    moveDown();
-});
-
-resetButton.addEventListener('click', function () {
-    resetPosition();
-});
